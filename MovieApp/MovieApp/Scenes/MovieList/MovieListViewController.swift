@@ -85,16 +85,18 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        var timer: Timer?
-        
+
         let length = searchBar.text?.count ?? 0
-        if length >= 3 {
-            
-            timer?.invalidate()
-            timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
-                
-                self.viewModel.searchMovies(query: searchText)
-            })
+        var searchedMovieArray: [MovieResponseModel] = []
+        
+        for item in self.viewModel.moviesDataSource {
+            if searchText == item.title {
+        
+                searchedMovieArray.append(item)
+                self.movieCollectionViewAdapter.dataSource?.data?.removeAll()
+                self.movieCollectionViewAdapter.dataSource?.data = searchedMovieArray
+                self.movieCollectionViewAdapter.refreshData()
+            }
         }
         
         if length == 0 {
