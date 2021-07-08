@@ -12,14 +12,12 @@ protocol MovieListViewModelDelegate: AnyObject {
         
     func initialMoviesFetched(model:  [MovieResponseModel]?)
     func loadMoreMoviesFetched(model: [MovieResponseModel]?)
-    func searchMoviesFetched(model:  [MovieResponseModel]?)
 }
 
 class MovieListViewModel {
     
     // MARK: Variables
     var moviesDataSource: [MovieResponseModel]
-    var searchMoviesDataSource: [MovieResponseModel]
     
     weak var delegate: MovieListViewModelDelegate?
     
@@ -30,7 +28,6 @@ class MovieListViewModel {
         self.delegate = delegate
         self.pageNumber = 1
         self.moviesDataSource = []
-        self.searchMoviesDataSource = []
     }
     
     // MARK: Network requests
@@ -48,20 +45,6 @@ class MovieListViewModel {
                     self?.pageNumber += 1
                 case .failure:
                     print("error")
-            }
-        }
-    }
-    
-    func searchMovies(query: String) {
-        
-        let parm = RequestParameters(language: "en-US", query: query)
-        let request = RequestModel(url: .searchMovies, querryItems: parm.searchMovieQueryItem)
-        NetworkRequestMain.postAction(request, MovieListResponseModel.self) {[weak self] result in
-            switch result {
-                case .success(let model):
-                    self?.delegate?.searchMoviesFetched(model: model.results)
-                case .failure(let error):
-                    print("error", error)
             }
         }
     }

@@ -48,12 +48,10 @@ enum StatusCode: String {
 
 enum URLSchema {
     case popularMovies
-    case searchMovies
     case movieDetail(movieID: Int)
     
     private enum EndpointConstants {
         static let popularMovies = "movie/popular"
-        static let searchMovies = "search/movie"
         static let movieDetail = "movie/%@"
     }
     
@@ -69,9 +67,6 @@ extension URLSchema {
         switch self {
             case .popularMovies:
                 return BaseURLConstants.baseURL + EndpointConstants.popularMovies
-            case .searchMovies:
-                return BaseURLConstants.baseURL + EndpointConstants.searchMovies
-            
             case .movieDetail(let movieID):
                 return (BaseURLConstants.baseURL + String(format: EndpointConstants.movieDetail, String(movieID)))
         }
@@ -86,13 +81,6 @@ extension QueryParameters {
         [URLQueryItem(name: "page", value: pageNumber),
         URLQueryItem(name: "language", value: language),
         URLQueryItem(name: "api_key", value: apiKey)]
-    }
-    
-    var searchMovieQueryItem: [URLQueryItem] {
-        [URLQueryItem(name: "page", value: pageNumber),
-        URLQueryItem(name: "language", value:language),
-        URLQueryItem(name: "api_key", value:apiKey),
-        URLQueryItem(name: "query", value: query)]
     }
     
     var movieDetailQueryItem: [URLQueryItem] {

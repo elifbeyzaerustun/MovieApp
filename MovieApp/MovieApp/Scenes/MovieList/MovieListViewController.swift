@@ -11,7 +11,6 @@ import UIKit
 protocol MovieListViewControllerDelegate: AnyObject {
     func initialMoviesFetched(model: MovieListResponseModel?)
     func loadMoreMoviesFetched(model: MovieListResponseModel?)
-    func searchMoviesFetched(model: MovieListResponseModel?)
 }
 
 class MovieListViewController: UIViewController {
@@ -133,18 +132,6 @@ extension MovieListViewController: MovieListViewModelDelegate {
         self.viewModel.moviesDataSource.append(contentsOf: movies)
 
         self.movieCollectionViewAdapter.dataSource?.data = self.viewModel.moviesDataSource
-        self.movieCollectionViewAdapter.refreshData()
-        
-        isFavoriteMovie()
-    }
-    
-    func searchMoviesFetched(model: [MovieResponseModel]?) {
-        guard let searchMoviesDataSource = self.movieCollectionViewAdapter?.dataSource?.data else { return }
-
-        self.movieCollectionViewAdapter?.dataSource?.data?.removeAll()
-        
-        self.movieCollectionViewAdapter?.dataSource?.data = model
-        self.viewModel.searchMoviesDataSource = searchMoviesDataSource
         self.movieCollectionViewAdapter.refreshData()
         
         isFavoriteMovie()
