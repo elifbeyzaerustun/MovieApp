@@ -57,6 +57,7 @@ class MovieListViewController: UIViewController {
         searchBar.placeholder = "Search movie"
         searchBar.delegate = self
         movieCollectionViewAdapter.delegate = self
+        hideKeyboardWhenTappedAround()
     }
     
     private func setUpCollectionView() {
@@ -77,6 +78,16 @@ class MovieListViewController: UIViewController {
     
     private func isFavoriteMovie() {
         movieCollectionViewAdapter.favoriteMoviesIDArray = favoriteMoviesIDArray
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
     
