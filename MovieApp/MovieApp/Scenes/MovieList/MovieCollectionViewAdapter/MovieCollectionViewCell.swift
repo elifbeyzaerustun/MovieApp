@@ -21,7 +21,13 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     // MARK: Configuration
     func configure(with model: MovieResponseModel?, isFavorite: Bool?) {
-        guard let imageURL = URL(string: "https://image.tmdb.org/t/p/w200\(model?.posterPath ?? "")") else { return }
+        
+        var URLString: String {
+          
+            return URLSchema.BaseURLConstants.imageBaseURLW200 + (model?.posterPath ?? "")
+        }
+        
+        guard let imageURL = URL(string: URLString) else { return }
 
         self.model = model
         containerView.layer.cornerRadius = 10

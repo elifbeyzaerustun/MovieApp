@@ -74,9 +74,13 @@ class MovieDetailViewController: UIViewController {
 // MARK: Extensions
 extension MovieDetailViewController: MovieDetailViewModelDelegate {
     func movieDetailFetched(model: MovieResponseModel?) {
+        var URLString: String {
+          
+            return URLSchema.BaseURLConstants.imageBaseURLW500 + (model?.posterPath ?? "")
+        }
         
         DispatchQueue.main.async {
-            guard let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(model?.posterPath ?? "")") else { return }
+            guard let imageURL = URL(string: URLString) else { return }
             let defaults = UserDefaults.standard
 
             self.movieImageView.loadImage(url: imageURL, placeholder: UIImage(named: "dummyMovieImage"))

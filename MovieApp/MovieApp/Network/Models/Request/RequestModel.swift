@@ -53,8 +53,10 @@ enum URLSchema {
         static let movieDetail = "movie/%@"
     }
     
-    private enum BaseURLConstants {
+    enum BaseURLConstants {
         static let baseURL = "https://api.themoviedb.org/3/"
+        static let imageBaseURLW200 = "https://image.tmdb.org/t/p/w200"
+        static let imageBaseURLW500 = "https://image.tmdb.org/t/p/w500"
     }
 }
 
