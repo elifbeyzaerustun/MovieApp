@@ -17,6 +17,8 @@ class MovieListViewController: UIViewController {
 
     // MARK: Variables
     var favoriteMoviesIDArray: [Int] = []
+    var fetchedMoviesTitleArray: [String] = []
+    var filteredMovieTitleArray = [String]()
 
     private var movieCollectionViewAdapter: MovieCollectionViewAdapter!
     private var viewModel: MovieListViewModel!
@@ -95,24 +97,34 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
         let length = searchBar.text?.count ?? 0
         var searchedMovieArray: [MovieResponseModel] = []
         
-        for item in self.viewModel.moviesDataSource {
-            if searchText == item.title {
-        
-                searchedMovieArray.append(item)
-                self.movieCollectionViewAdapter.dataSource?.data?.removeAll()
-                self.movieCollectionViewAdapter.dataSource?.data = searchedMovieArray
-                self.movieCollectionViewAdapter.refreshData()
+        if length >= 2 {
+            filterContentForSearchText(searchText: searchText)
+            
+            for model in self.viewModel.moviesDataSource {
+                for title in filteredMovieTitleArray {
+                    if title == model.title {
+                        searchedMovieArray.append(model)
+                    }
+                }
             }
+            
+            self.movieCollectionViewAdapter.dataSource?.data = searchedMovieArray
+            self.movieCollectionViewAdapter.refreshData()
         }
         
         if length == 0 {
             self.movieCollectionViewAdapter.dataSource?.data?.removeAll()
             self.movieCollectionViewAdapter.dataSource?.data = self.viewModel.moviesDataSource
             self.movieCollectionViewAdapter.refreshData()
+        }
+    }
+    
+    private func filterContentForSearchText(searchText: String) {
+        filteredMovieTitleArray = fetchedMoviesTitleArray.filter { term in
+            return term.lowercased().contains(searchText.lowercased())
         }
     }
 }
@@ -130,6 +142,10 @@ extension MovieListViewController: MovieListViewModelDelegate {
         self.movieCollectionViewAdapter.refreshData()
         
         isFavoriteMovie()
+        
+        for model in self.viewModel.moviesDataSource {
+            fetchedMoviesTitleArray.append(model.title ?? "")
+        }
     }
     
     func loadMoreMoviesFetched(model: [MovieResponseModel]?) {
@@ -146,6 +162,12 @@ extension MovieListViewController: MovieListViewModelDelegate {
         self.movieCollectionViewAdapter.refreshData()
         
         isFavoriteMovie()
+        
+        fetchedMoviesTitleArray.removeAll()
+        
+        for model in self.viewModel.moviesDataSource {
+            fetchedMoviesTitleArray.append(model.title ?? "")
+        }
     }
 }
 
