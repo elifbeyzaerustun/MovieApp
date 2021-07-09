@@ -16,9 +16,11 @@ protocol MovieListViewControllerDelegate: AnyObject {
 class MovieListViewController: UIViewController {
 
     // MARK: Variables
-    var favoriteMoviesIDArray: [Int] = []
-    var fetchedMoviesTitleArray: [String] = []
-    var filteredMovieTitleArray = [String]()
+    let defaults = UserDefaults.standard
+
+    private var favoriteMoviesIDArray: [Int] = []
+    private var fetchedMoviesTitleArray: [String] = []
+    private var filteredMovieTitleArray = [String]()
 
     private var movieCollectionViewAdapter: MovieCollectionViewAdapter!
     private var viewModel: MovieListViewModel!
@@ -27,8 +29,6 @@ class MovieListViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var loadMoreButton: UIButton!
-
-    let defaults = UserDefaults.standard
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -82,7 +82,7 @@ class MovieListViewController: UIViewController {
         movieCollectionViewAdapter.favoriteMoviesIDArray = favoriteMoviesIDArray
     }
     
-    func hideKeyboardWhenTappedAround() {
+    private func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
