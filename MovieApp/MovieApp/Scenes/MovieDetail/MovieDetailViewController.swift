@@ -12,8 +12,8 @@ class MovieDetailViewController: UIViewController {
     // MARK: Variables
     var viewModel: MovieDetailViewModel!
     var movieID: Int?
-    var favoriteMoviesIDArray: [Int] = []
-    var isFavoriteMovieBool: Bool? = false
+    private var favoriteMoviesIDArray: [Int] = []
+    private var isFavoriteMovieBool: Bool? = false
 
     @IBOutlet private weak var navigationBar: UINavigationBar!
     @IBOutlet private weak var rightBarButtonItem: UIBarButtonItem!
@@ -57,11 +57,11 @@ class MovieDetailViewController: UIViewController {
     }
     
     // MARK: Configuration
-    func setUpNavBar() {
+    private func setUpNavBar() {
         navigationBar.topItem?.title = "Movie Detail"
     }
 
-    func isFavoriteMovie() {
+    private func isFavoriteMovie() {
         for movieID in favoriteMoviesIDArray {
             if movieID == viewModel.movieID {
                 isFavoriteMovieBool = true
