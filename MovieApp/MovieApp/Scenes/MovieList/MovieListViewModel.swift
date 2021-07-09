@@ -12,8 +12,6 @@ protocol MovieListViewModelDelegate: AnyObject {
         
     func initialMoviesFetched(model:  [MovieResponseModel]?)
     func loadMoreMoviesFetched(model: [MovieResponseModel]?)
-    func filterContentForSearchText(searchText: String)
-    func addSearchedMovieModel()
 }
 
 class MovieListViewModel {
@@ -51,6 +49,27 @@ class MovieListViewModel {
                 case .failure:
                     print("error")
             }
+        }
+    }
+
+    // MARK: Search movie functions
+    func addSearchedMovieModel() {
+
+        var searchedMovieArray: [MovieResponseModel] = []
+
+        for model in moviesDataSource {
+            for title in filteredMovieTitleArray {
+                if title == model.title {
+                    searchedMovieArray.append(model)
+                }
+            }
+        }
+        self.searchedMovieArray = searchedMovieArray
+    }
+    
+    func filterContentForSearchText(searchText: String) {
+        filteredMovieTitleArray = fetchedMoviesTitleArray.filter { term in
+            return term.lowercased().contains(searchText.lowercased())
         }
     }
 }
