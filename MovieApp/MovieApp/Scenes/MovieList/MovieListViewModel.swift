@@ -12,12 +12,17 @@ protocol MovieListViewModelDelegate: AnyObject {
         
     func initialMoviesFetched(model:  [MovieResponseModel]?)
     func loadMoreMoviesFetched(model: [MovieResponseModel]?)
+    func filterContentForSearchText(searchText: String)
+    func addSearchedMovieModel()
 }
 
 class MovieListViewModel {
     
     // MARK: Variables
     var moviesDataSource: [MovieResponseModel]
+    var searchedMovieArray: [MovieResponseModel] = []
+    var filteredMovieTitleArray = [String]()
+    var fetchedMoviesTitleArray = [String]()
     
     weak var delegate: MovieListViewModelDelegate?
     

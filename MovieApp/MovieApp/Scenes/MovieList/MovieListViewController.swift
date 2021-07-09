@@ -19,8 +19,6 @@ class MovieListViewController: UIViewController {
     let defaults = UserDefaults.standard
 
     private var favoriteMoviesIDArray: [Int] = []
-    private var fetchedMoviesTitleArray: [String] = []
-    private var filteredMovieTitleArray = [String]()
 
     private var movieCollectionViewAdapter: MovieCollectionViewAdapter!
     private var viewModel: MovieListViewModel!
@@ -98,20 +96,12 @@ extension MovieListViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let length = searchBar.text?.count ?? 0
-        var searchedMovieArray: [MovieResponseModel] = []
         
         if length >= 2 {
             filterContentForSearchText(searchText: searchText)
+            addSearchedMovieModel()
             
-            for model in self.viewModel.moviesDataSource {
-                for title in filteredMovieTitleArray {
-                    if title == model.title {
-                        searchedMovieArray.append(model)
-                    }
-                }
-            }
-            
-            self.movieCollectionViewAdapter.dataSource?.data = searchedMovieArray
+            self.movieCollectionViewAdapter.dataSource?.data = viewModel.searchedMovieArray
             self.movieCollectionViewAdapter.refreshData()
         }
         
@@ -121,15 +111,29 @@ extension MovieListViewController: UISearchBarDelegate {
             self.movieCollectionViewAdapter.refreshData()
         }
     }
-    
-    private func filterContentForSearchText(searchText: String) {
-        filteredMovieTitleArray = fetchedMoviesTitleArray.filter { term in
-            return term.lowercased().contains(searchText.lowercased())
-        }
-    }
+
 }
 
 extension MovieListViewController: MovieListViewModelDelegate {
+    
+    func addSearchedMovieModel() {
+        var searchedMovieArray: [MovieResponseModel] = []
+
+        for model in self.viewModel.moviesDataSource {
+            for title in viewModel.filteredMovieTitleArray {
+                if title == model.title {
+                    searchedMovieArray.append(model)
+                }
+            }
+        }
+        viewModel.searchedMovieArray = searchedMovieArray
+    }
+    
+    func filterContentForSearchText(searchText: String) {
+        viewModel.filteredMovieTitleArray = viewModel.fetchedMoviesTitleArray.filter { term in
+            return term.lowercased().contains(searchText.lowercased())
+        }
+    }
     
     func initialMoviesFetched(model: [MovieResponseModel]?) {
         guard let movies = model else { return }
@@ -144,7 +148,7 @@ extension MovieListViewController: MovieListViewModelDelegate {
         isFavoriteMovie()
         
         for model in self.viewModel.moviesDataSource {
-            fetchedMoviesTitleArray.append(model.title ?? "")
+            viewModel.fetchedMoviesTitleArray.append(model.title ?? "")
         }
     }
     
@@ -163,10 +167,10 @@ extension MovieListViewController: MovieListViewModelDelegate {
         
         isFavoriteMovie()
         
-        fetchedMoviesTitleArray.removeAll()
+        viewModel.fetchedMoviesTitleArray.removeAll()
         
         for model in self.viewModel.moviesDataSource {
-            fetchedMoviesTitleArray.append(model.title ?? "")
+            viewModel.fetchedMoviesTitleArray.append(model.title ?? "")
         }
     }
 }
