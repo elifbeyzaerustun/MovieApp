@@ -79,7 +79,7 @@ extension MovieDetailViewController: MovieDetailViewModelDelegate {
             guard let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(model?.posterPath ?? "")") else { return }
             let defaults = UserDefaults.standard
 
-            self.movieImageView.loadImage(with: imageURL)
+            self.movieImageView.loadImage(url: imageURL, placeholder: UIImage(named: "dummyMovieImage"))
             self.movieImageView.contentMode = .scaleToFill
             self.movieOverview.text = model?.overview
             self.movieTitleLabel.text = model?.title

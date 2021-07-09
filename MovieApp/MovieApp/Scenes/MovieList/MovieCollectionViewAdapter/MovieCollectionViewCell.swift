@@ -14,7 +14,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
 
     var model: MovieResponseModel?
 
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var movieImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var favoriteButton: UIButton!
@@ -32,7 +32,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         self.titleLabel.text = model?.title
         self.favoriteButton.isHidden = true
         
-        self.movieImageView.loadImage(with: imageURL)
+        self.movieImageView.loadImage(url: imageURL, placeholder: UIImage(named: "dummyMovieImage"))
         
         if isFavorite == true {
             self.favoriteButton.isHidden = false            
