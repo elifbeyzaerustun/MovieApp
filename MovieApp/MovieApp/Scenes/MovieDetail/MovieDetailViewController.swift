@@ -76,7 +76,7 @@ extension MovieDetailViewController: MovieDetailViewModelDelegate {
     func movieDetailFetched(model: MovieResponseModel?) {
         
         DispatchQueue.main.async {
-            guard let imageURL = URL(string: "https://image.tmdb.org/t/p/w200\(model?.posterPath ?? "")") else { return }
+            guard let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(model?.posterPath ?? "")") else { return }
             let defaults = UserDefaults.standard
 
             self.movieImageView.loadImage(with: imageURL)
