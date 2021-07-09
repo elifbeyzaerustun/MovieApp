@@ -15,8 +15,9 @@ class BaseViewController: UIViewController {
         container.frame = UIScreen.main.bounds
         container.backgroundColor = .clear
         
-        let activityView = UIActivityIndicatorView(style: .medium)
+        let activityView = UIActivityIndicatorView(style: .large)
         activityView.center = container.center
+        activityView.color = UIColor.systemBlue
         container.addSubview(activityView)
         self.view.addSubview(container)
         activityView.startAnimating()
