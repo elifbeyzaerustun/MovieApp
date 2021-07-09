@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Movie List View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MovieListViewController" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="Main">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V80-kx-kf9">
+                                <rect key="frame" x="20" y="192" width="374" height="562"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OMJ-4B-X2x">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="movieCollectionViewCell" id="HuL-z6-QFe" customClass="MovieCollectionViewCell" customModule="MovieApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ly2-3R-gW0">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <segue destination="MZa-5I-D0x" kind="presentation" identifier="navigateToMovieDetail" modalPresentationStyle="fullScreen" id="zg8-mq-L0z"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="QZn-E8-MX6">
+                                <rect key="frame" x="20" y="88" width="374" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLd-wg-Ayx">
+                                <rect key="frame" x="20" y="802" width="374" height="36"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="t2J-C1-BtZ"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loadMoreButtonClicked" destination="BYZ-38-t0r" eventType="touchUpInside" id="yLJ-M6-Cj2"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5X-Cc-u4D">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="U49-3J-HQ1"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="Fu6-Wm-xEx"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QZn-E8-MX6" secondAttribute="trailing" constant="20" id="30o-rE-VLm"/>
+                            <constraint firstItem="wLd-wg-Ayx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Iob-la-vag"/>
+                            <constraint firstItem="QZn-E8-MX6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Na3-Zw-d6n"/>
+                            <constraint firstItem="B5X-Cc-u4D" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="WxP-O2-7tM"/>
+                            <constraint firstItem="wLd-wg-Ayx" firstAttribute="top" secondItem="V80-kx-kf9" secondAttribute="bottom" constant="48" id="ZOB-WV-bMX"/>
+                            <constraint firstItem="V80-kx-kf9" firstAttribute="top" secondItem="QZn-E8-MX6" secondAttribute="bottom" constant="48" id="cPt-nS-Ull"/>
+                            <constraint firstItem="QZn-E8-MX6" firstAttribute="top" secondItem="B5X-Cc-u4D" secondAttribute="bottom" id="eo3-2K-Udf"/>
+                            <constraint firstItem="V80-kx-kf9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gLm-l3-LG5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wLd-wg-Ayx" secondAttribute="trailing" constant="20" id="jgM-0H-PWr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wLd-wg-Ayx" secondAttribute="bottom" constant="24" id="klY-gi-N1j"/>
+                            <constraint firstItem="B5X-Cc-u4D" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="lrr-8k-117"/>
+                            <constraint firstItem="B5X-Cc-u4D" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sVk-ZM-XgD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="V80-kx-kf9" secondAttribute="trailing" constant="20" id="v4x-mZ-vay"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="V80-kx-kf9" id="Gkf-sl-wg5"/>
+                        <outlet property="loadMoreButton" destination="wLd-wg-Ayx" id="qB8-Hl-OFo"/>
+                        <outlet property="navigationBar" destination="B5X-Cc-u4D" id="9VP-ks-fhA"/>
+                        <outlet property="searchBar" destination="QZn-E8-MX6" id="xHz-iE-sol"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-197.10144927536234" y="78.348214285714278"/>
+        </scene>
+        <!--Movie Detail View Controller-->
+        <scene sceneID="URS-jC-qs3">
+            <objects>
+                <viewController id="MZa-5I-D0x" customClass="MovieDetailViewController" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ljy-ja-QHZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iOJ-cU-ZBg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="645" y="78"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
