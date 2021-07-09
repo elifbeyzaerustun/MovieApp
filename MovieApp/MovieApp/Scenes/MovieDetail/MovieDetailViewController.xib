@@ -29,9 +29,9 @@
                     <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VzX-yV-1YU">
-                            <rect key="frame" x="8" y="8" width="398" height="240"/>
+                            <rect key="frame" x="8" y="8" width="398" height="400"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="240" id="bzg-mz-OJa"/>
+                                <constraint firstAttribute="height" constant="400" id="bzg-mz-OJa"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -39,8 +39,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ceJ-A6-0pr">
-                            <rect key="frame" x="20" y="333.5" width="374" height="416.5"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ceJ-A6-0pr">
+                            <rect key="frame" x="16" y="493.5" width="382" height="256.5"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                             <color key="textColor" systemColor="labelColor"/>
@@ -48,13 +48,13 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ct2-Q6-oCS">
-                            <rect key="frame" x="20" y="288" width="374" height="21.5"/>
+                            <rect key="frame" x="20" y="448" width="374" height="21.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="viy-7w-NDV">
-                            <rect key="frame" x="20" y="235" width="60" height="24"/>
+                            <rect key="frame" x="20" y="396" width="60" height="24"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boS-cd-Aua">
                                     <rect key="frame" x="26" y="2.5" width="30" height="19.5"/>
@@ -91,7 +91,7 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="VzX-yV-1YU" firstAttribute="leading" secondItem="EhA-db-3JI" secondAttribute="leading" constant="8" id="1Ir-xh-czC"/>
-                        <constraint firstItem="ceJ-A6-0pr" firstAttribute="leading" secondItem="EhA-db-3JI" secondAttribute="leading" constant="20" id="7RC-4z-ZOY"/>
+                        <constraint firstItem="ceJ-A6-0pr" firstAttribute="leading" secondItem="EhA-db-3JI" secondAttribute="leading" constant="16" id="7RC-4z-ZOY"/>
                         <constraint firstAttribute="trailing" secondItem="Ct2-Q6-oCS" secondAttribute="trailing" constant="20" id="Dec-BB-wUj"/>
                         <constraint firstItem="Ct2-Q6-oCS" firstAttribute="top" secondItem="VzX-yV-1YU" secondAttribute="bottom" constant="40" id="MlE-hp-NkF"/>
                         <constraint firstItem="Ct2-Q6-oCS" firstAttribute="leading" secondItem="EhA-db-3JI" secondAttribute="leading" constant="20" id="QZh-ny-cfi"/>
@@ -99,9 +99,9 @@
                         <constraint firstAttribute="bottom" secondItem="ceJ-A6-0pr" secondAttribute="bottom" constant="24" id="TpX-XT-j3H"/>
                         <constraint firstAttribute="trailing" secondItem="VzX-yV-1YU" secondAttribute="trailing" constant="8" id="UMi-CP-org"/>
                         <constraint firstItem="VzX-yV-1YU" firstAttribute="top" secondItem="EhA-db-3JI" secondAttribute="top" constant="8" id="gN1-KB-dzB"/>
-                        <constraint firstItem="viy-7w-NDV" firstAttribute="top" secondItem="EhA-db-3JI" secondAttribute="top" constant="235" id="gwt-ez-F0s"/>
+                        <constraint firstItem="viy-7w-NDV" firstAttribute="top" secondItem="VzX-yV-1YU" secondAttribute="top" constant="388" id="qPF-xE-erG"/>
                         <constraint firstItem="ceJ-A6-0pr" firstAttribute="top" secondItem="Ct2-Q6-oCS" secondAttribute="bottom" constant="24" id="u5C-Cp-TOE"/>
-                        <constraint firstAttribute="trailing" secondItem="ceJ-A6-0pr" secondAttribute="trailing" constant="20" id="wsL-ch-aLK"/>
+                        <constraint firstAttribute="trailing" secondItem="ceJ-A6-0pr" secondAttribute="trailing" constant="16" id="wsL-ch-aLK"/>
                     </constraints>
                 </view>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rrd-s2-9uF">
