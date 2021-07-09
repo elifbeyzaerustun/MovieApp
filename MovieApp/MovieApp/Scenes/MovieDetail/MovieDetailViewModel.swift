@@ -35,6 +35,7 @@ class MovieDetailViewModel {
     }
     
     func fetchMovieDetail() {
+        showLoadingIndicator()
         let parm = RequestParameters()
         let request = RequestModel(url: .movieDetail(movieID: movieID ?? 0), querryItems: parm.movieDetailQueryItem)
         NetworkRequestMain.postAction(request, MovieResponseModel.self) {[weak self] result in
@@ -42,6 +43,7 @@ class MovieDetailViewModel {
 
             switch result {
                 case .success(let model):
+                    hideLoadingIndicator()
                     self.delegate?.movieDetailFetched(model: model)
                     self.pageNumber += 1
                 case .failure:

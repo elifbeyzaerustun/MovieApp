@@ -35,11 +35,14 @@ class MovieListViewModel {
     
     // MARK: Network requests
     func fetchMovies() {
+        showLoadingIndicator()
+        
         let parm = RequestParameters(language: "en-US", pageNumber: String(pageNumber))
         let request = RequestModel(url: .popularMovies, querryItems: parm.fetchMovieQueryItem)
         NetworkRequestMain.postAction(request, MovieListResponseModel.self) {[weak self] result in
             switch result {
                 case .success(let model):
+                    hideLoadingIndicator()
                     if self?.pageNumber == 1 {
                         self?.delegate?.initialMoviesFetched(model: model.results)
                     } else {
