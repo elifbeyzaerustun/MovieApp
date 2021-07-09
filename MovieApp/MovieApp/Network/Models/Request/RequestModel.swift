@@ -37,9 +37,7 @@ enum RequestType: String {
 }
 
 enum NetworkError: Error {
-    case domainError
     case decodingError
-    case noDataError
 }
 
 enum StatusCode: String {
