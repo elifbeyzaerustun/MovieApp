@@ -98,8 +98,8 @@ extension MovieListViewController: UISearchBarDelegate {
         let length = searchBar.text?.count ?? 0
         
         if length >= 2 {
-            filterContentForSearchText(searchText: searchText)
-            addSearchedMovieModel()
+            viewModel.filterContentForSearchText(searchText: searchText)
+            viewModel.addSearchedMovieModel()
             
             self.movieCollectionViewAdapter.dataSource?.data = viewModel.searchedMovieArray
             self.movieCollectionViewAdapter.refreshData()
@@ -115,25 +115,6 @@ extension MovieListViewController: UISearchBarDelegate {
 }
 
 extension MovieListViewController: MovieListViewModelDelegate {
-    
-    func addSearchedMovieModel() {
-        var searchedMovieArray: [MovieResponseModel] = []
-
-        for model in self.viewModel.moviesDataSource {
-            for title in viewModel.filteredMovieTitleArray {
-                if title == model.title {
-                    searchedMovieArray.append(model)
-                }
-            }
-        }
-        viewModel.searchedMovieArray = searchedMovieArray
-    }
-    
-    func filterContentForSearchText(searchText: String) {
-        viewModel.filteredMovieTitleArray = viewModel.fetchedMoviesTitleArray.filter { term in
-            return term.lowercased().contains(searchText.lowercased())
-        }
-    }
     
     func initialMoviesFetched(model: [MovieResponseModel]?) {
         guard let movies = model else { return }
