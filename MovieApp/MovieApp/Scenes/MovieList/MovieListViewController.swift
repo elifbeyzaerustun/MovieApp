@@ -13,7 +13,7 @@ protocol MovieListViewControllerDelegate: AnyObject {
     func loadMoreMoviesFetched(model: MovieListResponseModel?)
 }
 
-class MovieListViewController: UIViewController {
+class MovieListViewController: BaseViewController {
 
     // MARK: Variables
     let defaults = UserDefaults.standard

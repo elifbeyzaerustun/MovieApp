@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController {
+class MovieDetailViewController: BaseViewController {
 
     // MARK: Variables
     var viewModel: MovieDetailViewModel!
