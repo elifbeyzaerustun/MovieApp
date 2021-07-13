@@ -7,12 +7,6 @@
 
 import UIKit
 
-// MARK: Protocols
-protocol MovieListViewControllerDelegate: AnyObject {
-    func initialMoviesFetched(model: MovieListResponseModel?)
-    func loadMoreMoviesFetched(model: MovieListResponseModel?)
-}
-
 class MovieListViewController: BaseViewController {
     
     // MARK: Variables
