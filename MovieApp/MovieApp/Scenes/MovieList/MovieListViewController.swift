@@ -29,8 +29,8 @@ class MovieListViewController: BaseViewController {
         viewModel.fetchMovies()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         favoriteMoviesIDArray = defaults.array(forKey: "SavedMoviesIDArray")  as? [Int] ?? [Int]()
         movieCollectionViewAdapter.favoriteMoviesIDArray = favoriteMoviesIDArray
@@ -53,6 +53,7 @@ class MovieListViewController: BaseViewController {
         movieCollectionViewAdapter.delegate = self
         hideKeyboardWhenTappedAround()
     }
+    
     private func setUpCollectionView() {
         movieCollectionViewAdapter = MovieCollectionViewAdapter(collectionView: collectionView)
     }
